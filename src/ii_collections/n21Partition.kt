@@ -15,4 +15,10 @@ fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
     return customers.partition {
         it.orders.count { o -> !o.isDelivered } > it.orders.count().div(2)
     }.first.toSet()
+    /*
+    return customers.filter {
+        val (delivered, undelivered) = it.orders.partition { it.isDelivered }
+        undelivered.size > delivered.size
+    }.toSet()
+     */
 }
