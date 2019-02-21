@@ -1,5 +1,9 @@
 package v_builders.examples
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
+
 fun todoTask38(): Nothing = TODO(
     """
         Task 38.
@@ -7,9 +11,9 @@ fun todoTask38(): Nothing = TODO(
         Write your own implementation of the function 'apply' named 'myApply'.
     """
 )
-
 fun <T> T.myApply(f: T.() -> Unit): T {
-    todoTask38()
+    f()
+    return this
 }
 
 fun buildString(): String {
