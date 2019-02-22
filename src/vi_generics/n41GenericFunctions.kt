@@ -27,7 +27,7 @@ fun List<String>.partitionWordsAndLines(): Pair<List<String>, List<String>> {
 fun Set<Char>.partitionLettersAndOtherSymbols(): Pair<Set<Char>, Set<Char>> {
     return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
 }
-
+/*
 private fun <E> List<E>.partitionTo(c1: List<E>, c2: List<E>, predicate: (E) -> Boolean): Pair<List<E>, List<E>> {
     return this.partition(predicate)
 }
@@ -35,4 +35,15 @@ private fun <E> List<E>.partitionTo(c1: List<E>, c2: List<E>, predicate: (E) -> 
 private fun <E> Set<E>.partitionTo(c1: Set<E>, c2: Set<E>, predicate: (E) -> Boolean): Pair<Set<E>, Set<E>> {
     val pair = this.partition(predicate)
     return Pair(pair.first.toSet(), pair.second.toSet())
+}
+*/
+private fun <E, C: MutableCollection<E>> Collection<E>.partitionTo(first: C, second: C, predicate: (E) -> Boolean): Pair<C, C> {
+    for (element in this) {
+        if (predicate(element)) {
+            first.add(element)
+        } else {
+            second.add(element)
+        }
+    }
+    return Pair(first, second)
 }
